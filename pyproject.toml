@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools >= 75.8.0", "setuptools-scm >= 8.2.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name  = "advtok"
+dynamic = ["version", "dependencies"]
+requires-python = ">= 3.10.12"
+authors = [
+  {name="Renato Lui Geh", email="renatolg@cs.ucla.edu"},
+  {name="Zilei Shao", email="zileishao@g.ucla.edu"},
+]
+description = "Adversarial Tokenization"
+readme = "README.md"
+classifiers = [
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Operating System :: POSIX :: Linux",
+  "Intended Audience :: Science/Research",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+[project.urls]
+Homepage = "https://cs.ucla.edu/~"
+Repository = "https://github.com/RenatoGeh/advtok"
+Issues = "https://github.com/RenatoGeh/advtok/issues"
+
+[tool.setuptools.dynamic]
+dependencies = {file=["requirements.txt"]}
+
+[tool.setuptools_scm]
+
