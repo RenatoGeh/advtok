@@ -1,7 +1,7 @@
 import random, math, sys, heapq, multiprocessing, pickle, itertools, os, time
 import torch, transformers, tqdm, scipy, Levenshtein, numpy as np
 from transformers import AutoTokenizer, AutoModelForCausalLM
-import utils
+import advtok.utils as utils
 
 sys.setrecursionlimit(100_000)
 torch.multiprocessing.set_start_method("spawn", force=True)

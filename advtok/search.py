@@ -1,11 +1,12 @@
 import math, random
 import transformers, tqdm, torch, Levenshtein, nanogcg
-import multi_rooted_mdd as mrmdd, mdd, utils, jailbreak
+import advtok.multi_rooted_mdd as mrmdd, advtok.mdd as mdd, advtok.utils as utils
+import advtok.jailbreak as jailbreak
 
 def greedy(model: transformers.AutoModelForCausalLM, tok: transformers.AutoTokenizer, S: str,
-           k: int, sys_prompt: str, response: str, batch_size: int, X_0: list = str,
+           k: int, sys_prompt: str, response: str, batch_size: int, X_0: list = None,
            max_neighbors: int = math.inf, frozen_prefix: str = [], frozen_suffix: str = [],
-           return_ll: bool = False, only_dist2: bool = False, **kwargs) -> list:
+           return_ll: bool = False, only_dist2: bool = True, early_stop: bool = True, **kwargs) -> list:
     """Greedy local search for argmax_X p(sys_prompt, X, response) with X_0 as initial tokenization
     and k the number of iterations."""
 
@@ -26,8 +27,8 @@ def greedy(model: transformers.AutoModelForCausalLM, tok: transformers.AutoToken
     best_ll, last_ll = -math.inf, -math.inf
     num_eq = 0
     len_affixes = prefix.numel() + suffix.numel()
-    ne2_els = int(math.floor(0.25*max_neighbors))
-    neo_els = int(math.ceil(0.75*max_neighbors))
+    ne2_els = math.inf if math.isinf(max_neighbors) else int(math.floor(0.25*max_neighbors))
+    neo_els = math.inf if math.isinf(max_neighbors) else int(math.ceil(0.75*max_neighbors))
     for i in iter_rng:
         mrdd = mrmdd.build_mrmdd(tok, X, 2 if only_dist2 else 4, prefix_space=False, reuse_mdd=dd)
         # Neighbors of X, i.e. {V : d(X, V)=2}, where d is edge distance.
@@ -38,7 +39,7 @@ def greedy(model: transformers.AutoModelForCausalLM, tok: transformers.AutoToken
                 random.shuffle(Ne)
                 Ne = Ne[:max_neighbors]
         else:
-            Ne = mrdd.uniform(4, neo_els)
+            Ne = mrdd.enumerate(4) if math.isinf(neo_els) else mrdd.uniform(4, neo_els)
             Ne2 = mrdd.enumerate(2)
             l_ne = len(Ne2)+neo_els
             if len(Ne2) > ne2_els:
@@ -57,7 +58,7 @@ def greedy(model: transformers.AutoModelForCausalLM, tok: transformers.AutoToken
         X = Ne[j_best]
         best_ll = nll[j_best].item()
         iter_rng.set_description(f"Iteration {i} | #toks={l_ne} | d(X_c,X)={Levenshtein.distance(X_c, X)} | d(X_0,X)={Levenshtein.distance(X_0, X)} | loss={-best_ll:0.5f}")
-        if math.isclose(last_ll, best_ll, abs_tol=1e-5):
+        if early_stop and math.isclose(last_ll, best_ll, abs_tol=1e-5):
             num_eq += 1
             if num_eq > 3: break
         last_ll = best_ll
@@ -105,7 +106,7 @@ def stochastic(model: transformers.AutoModelForCausalLM, tok: transformers.AutoT
 def gcg(model: transformers.AutoModelForCausalLM, tok: transformers.AutoTokenizer, S: str, k: int,
         sys_prompt: str, response: str, batch_size: int, func = None, max_neighbors: int = math.inf,
         X_0: str = None, frozen_prefix: str = [], reuse_suffix: str = None, **kwargs) -> list:
-    "Runs GCG and then advtok.f, where f is greedy or stochastic, for example."
+    "Runs GCG and then search.f, where f is greedy or stochastic, for example."
 
     if reuse_suffix is None:
         cfg = nanogcg.GCGConfig(**kwargs)

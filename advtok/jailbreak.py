@@ -1,5 +1,6 @@
 import transformers, tqdm, torch, Levenshtein, numpy as np
-import multi_rooted_mdd as mrmdd, evaluate, mdd, utils
+import advtok.multi_rooted_mdd as mrmdd, advtok.evaluate as evaluate, advtok.mdd as mdd
+import advtok.utils as utils
 
 DEFAULT_SYS_PROMPT = "You are a helpful chatbot that avoids any political, unsafe or toxic responses."
 

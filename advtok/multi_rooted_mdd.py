@@ -4,7 +4,7 @@ from dataclasses import dataclass
 from collections import deque
 import random, math, sys, heapq, multiprocessing, pickle, itertools, os, time, csv
 from transformers import AutoTokenizer, AutoModelForCausalLM
-import mdd, utils
+import advtok.mdd as mdd, advtok.utils as utils
 
 def _token_toxicity(toxicity_model: dict, token_id: int) -> float:
     if token_id is None: return 0.0
