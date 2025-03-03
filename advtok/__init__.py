@@ -16,41 +16,40 @@ def run(model: transformers.AutoModelForCausalLM, tok: transformers.AutoTokenize
 
     Parameters
     ----------
-    model         : transformers.AutoModelForCausalLM
-                    Autoregressive LLM.
-    tok           : transformers.AutoTokenizer
-                    LLM tokenizer.
-    request       : str
-                    Malicious/unsafe request.
-    num_iters     : int
-                    Number of iterations to run the greedy algorithm for.
-    response      : str
-                    Expected response answer to optimize for.
-    batch_size    : int
-                    Batch size for computing the likelihood.
-    sys_prompt    : str, optional
-                    Optional system prompt. Defaults to `advtok.jailbreak.DEFAULT_SYS_PROMPT`.
-    X_0           : str, optional
-                    Initial tokenization to start searching. Accepts either a tokenization as a list, the
-                    string "canonical" for the canonical tokenization, or "random" for a randomly sampled
-                    tokenization.
+    model : transformers.AutoModelForCausalLM
+        Autoregressive LLM.
+    tok : transformers.AutoTokenizer
+        LLM tokenizer.
+    request : str
+        Malicious/unsafe request.
+    num_iters : int
+        Number of iterations to run the greedy algorithm for.
+    response : str
+        Expected response answer to optimize for.
+    batch_size : int
+        Batch size for computing the likelihood.
+    sys_prompt : str, optional
+        Optional system prompt. Defaults to `advtok.jailbreak.DEFAULT_SYS_PROMPT`.
+    X_0 : str, optional
+        Initial tokenization to start searching. Accepts either a tokenization as a list, the
+        string "canonical" for the canonical tokenization, or "random" for a randomly sampled
+        tokenization.
     max_neighbors : int, optional
-                    Bound the neighbors to `max_neighbors` and randomly sample (without
-                    replacement) from this set.
+        Bound the neighbors to `max_neighbors` and randomly sample (without
+        replacement) from this set.
     frozen_prefix : str, optional
-                    Add a frozen prefix (to the response) in the optimization.
+        Add a frozen prefix (to the response) in the optimization.
     frozen_suffix : str, optional
-                    Add a suffix prefix (to the response) in the optimization.
-    only_dist2    : bool
-                    Only use neighbors or allow for distance 4 jumps as well.
-    early_stop    : bool
-                    If the last three iterations are all approximately equal, stop.
+        Add a suffix prefix (to the response) in the optimization.
+    only_dist2 : bool
+        Only use neighbors or allow for distance 4 jumps as well.
+    early_stop : bool
+        If the last three iterations are all approximately equal, stop.
 
     Returns
     -------
     list
         Adversarial tokenization of `request`.
-
 
     Examples
     --------
@@ -77,11 +76,11 @@ def prepare(tok: transformers.AutoTokenizer, X: list, sys_prompt: str = advtok.j
     Parameters
     ----------
     tok : transformers.AutoTokenizer
-          LLM tokenizer.
+        LLM tokenizer.
     X : list
         Tokenization of the request.
     sys_prompt : str, optional
-                 Optional system prompt. Defaults to `advtok.jailbreak.DEFAULT_SYS_PROMPT`.
+        Optional system prompt. Defaults to `advtok.jailbreak.DEFAULT_SYS_PROMPT`.
 
     Returns
     -------
