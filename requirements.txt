@@ -1,5 +1,5 @@
 accelerate >= 1.4.0
-levenshtein >= 0.26.1
+Levenshtein >= 0.26.1
 torch >= 2.6.0
 transformers >= 4.47.1
 graphviz >= 0.20.3
