@@ -1,5 +1,5 @@
 import math, random
-import transformers, tqdm, torch, Levenshtein, nanogcg
+import transformers, tqdm, torch, Levenshtein
 import advtok.multi_rooted_mdd as mrmdd, advtok.mdd as mdd, advtok.utils as utils
 import advtok.jailbreak as jailbreak
 
@@ -102,17 +102,3 @@ def stochastic(model: transformers.AutoModelForCausalLM, tok: transformers.AutoT
         iter_rng.set_description(f"Iteration {i} | #toks={len(Ne)} | d(X_c,X)={Levenshtein.distance(X_c, X)} | d(X_0,X)={Levenshtein.distance(X_0, X)} | loss={-best_ll:0.5f}")
     if return_ll: return X, best_ll
     return X
-
-def gcg(model: transformers.AutoModelForCausalLM, tok: transformers.AutoTokenizer, S: str, k: int,
-        sys_prompt: str, response: str, batch_size: int, func = None, max_neighbors: int = math.inf,
-        X_0: str = None, frozen_prefix: str = [], reuse_suffix: str = None, **kwargs) -> list:
-    "Runs GCG and then search.f, where f is greedy or stochastic, for example."
-
-    if reuse_suffix is None:
-        cfg = nanogcg.GCGConfig(**kwargs)
-        res = nanogcg.run(model, tok, jailbreak.roles(tok, sys_prompt, S), response, cfg)
-        _S = f"{S} {res.best_string}"
-    else: _S = reuse_suffix
-    return func(model, tok, _S, k, sys_prompt, response, batch_size, max_neighbors=max_neighbors,
-                X_0=X_0, frozen_prefix=frozen_prefix)
-
