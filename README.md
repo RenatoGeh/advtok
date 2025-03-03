@@ -141,6 +141,10 @@ O = model.generate(**advtok.prepare(tokenizer, X).to(model.device), do_sample=Tr
 for o in tokenizer.batch_decode(O): print(o, '\n' + '-'*30)
 ```
 
+> [!TIP]
+> `nanoGCG` does not currently support NumPy 2. You might want to restrict your NumPy version to
+> 1.26.4 in case you want to use GCG.
+
 or FFA:
 
 ```python

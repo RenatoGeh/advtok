@@ -21,7 +21,7 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://cs.ucla.edu/~"
+Homepage = "https://advtok.github.io/"
 Repository = "https://github.com/RenatoGeh/advtok"
 Issues = "https://github.com/RenatoGeh/advtok/issues"
 

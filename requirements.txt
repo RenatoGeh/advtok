@@ -3,6 +3,5 @@ Levenshtein >= 0.26.1
 torch >= 2.6.0
 transformers >= 4.47.1
 graphviz >= 0.20.3
-nanogcg >= 0.3.0
 numpy >= 1.26.4
 tqdm >= 4.67.1
