@@ -1,5 +1,8 @@
 # AdvTok
 
+![GitHub License](https://img.shields.io/github/license/RenatoGeh/advtok)
+[![PyPI - Version](https://img.shields.io/pypi/v/advtok)](https://pypi.org/project/advtok/)
+
 `advtok` provides an easy to use implementation of [Adversarial Tokenization](#how-to-cite).
 
 ## Installation
