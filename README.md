@@ -1,6 +1,6 @@
 # AdvTok
 
-![arXiv](https://img.shields.io/badge/arXiv-2503.02174-blue?link=https%3A%2F%2Farxiv.org%2Fabs%2F2503.02174)
+[![arXiv](https://img.shields.io/badge/arXiv-2503.02174-blue?link=https%3A%2F%2Farxiv.org%2Fabs%2F2503.02174)](https://arxiv.org/abs/2503.02174)
 ![GitHub License](https://img.shields.io/github/license/RenatoGeh/advtok)
 [![PyPI - Version](https://img.shields.io/pypi/v/advtok)](https://pypi.org/project/advtok/)
 
