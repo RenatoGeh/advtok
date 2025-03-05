@@ -1,5 +1,6 @@
 # AdvTok
 
+![arXiv](https://img.shields.io/badge/arXiv-2503.02174-blue?link=https%3A%2F%2Farxiv.org%2Fabs%2F2503.02174)
 ![GitHub License](https://img.shields.io/github/license/RenatoGeh/advtok)
 [![PyPI - Version](https://img.shields.io/pypi/v/advtok)](https://pypi.org/project/advtok/)
 
@@ -207,16 +208,16 @@ specific edge cases not covered by our code.
 ## How to cite
 
 This work implements `advtok`, described in full detail in the paper ["Adversarial
-Tokenization"](https://arxiv.org/abs/).
+Tokenization"](https://arxiv.org/abs/2503.02174).
 
 ```
 @misc{geh2025adversarialtokenization,
       title={Adversarial Tokenization},
       author={Renato Lui Geh and Zilei Shao and Guy Van den Broeck},
       year={2025},
-      eprint={},
+      eprint={2503.02174},
       archivePrefix={arXiv},
       primaryClass={cs.CL},
-      url={https://arxiv.org/abs/},
+      url={https://arxiv.org/abs/2503.02174},
 }
 ```
