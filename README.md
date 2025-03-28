@@ -4,11 +4,14 @@
 
 ## Installation
 
-`advtok` can be installed with `pip`
+To install this anonymized version of the repository, first download the repository from the web
+interface, unzip the repository and then locally install with pip:
 
 ```bash
-pip install git+https://github.com/RenatoGeh/advtok.git@anonymize
+pip install advtok-97BC
 ```
+
+where `advtok-97BC` is the unzipped directory of the repository.
 
 ## Usage
 
