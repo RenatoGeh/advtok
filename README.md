@@ -1,18 +1,13 @@
 # AdvTok
 
-[![arXiv](https://img.shields.io/badge/arXiv-2503.02174-blue?link=https%3A%2F%2Farxiv.org%2Fabs%2F2503.02174)](https://arxiv.org/abs/2503.02174)
-![GitHub License](https://img.shields.io/github/license/RenatoGeh/advtok)
-[![PyPI - Version](https://img.shields.io/pypi/v/advtok)](https://pypi.org/project/advtok/)
-
-`advtok` provides an easy to use implementation of [Adversarial Tokenization](https://advtok.github.io/).
+`advtok` provides an easy to use implementation of Adversarial Tokenization.
 
 ## Installation
 
 `advtok` can be installed with `pip`
 
 ```bash
-pip install advtok # stable release in PyPI
-pip install git+https://github.com/RenatoGeh/advtok.git@master # latest version in GitHub
+pip install git+https://github.com/RenatoGeh/advtok.git@anonymize
 ```
 
 ## Usage
@@ -185,8 +180,6 @@ optimizing for
 where $\mathbf{r}$ is an expected response, $\mathbf{x}$ is a(n optional) prefix and $\mathbf{y}$
 is a(n optional) suffix of $\mathbf{v}$.
 
-See [our paper](#how-to-cite) for details.
-
 ## Limitations
 
 `advtok` requires compiling a multi-valued decision diagram over the vocabulary of the tokenizer.
@@ -205,19 +198,3 @@ It also probably works with the following tokenizers (but not yet verified):
 It *might* work with other tokenizers, but this is not guaranteed, as these tokenizers might have
 specific edge cases not covered by our code.
 
-## How to cite
-
-This work implements `advtok`, described in full detail in the paper ["Adversarial
-Tokenization"](https://arxiv.org/abs/2503.02174).
-
-```
-@misc{geh2025adversarialtokenization,
-      title={Adversarial Tokenization},
-      author={Renato Lui Geh and Zilei Shao and Guy Van den Broeck},
-      year={2025},
-      eprint={2503.02174},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL},
-      url={https://arxiv.org/abs/2503.02174},
-}
-```
