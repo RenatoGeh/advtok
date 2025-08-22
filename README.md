@@ -1,6 +1,7 @@
 # AdvTok
 
 [![arXiv](https://img.shields.io/badge/arXiv-2503.02174-blue?link=https%3A%2F%2Farxiv.org%2Fabs%2F2503.02174)](https://arxiv.org/abs/2503.02174)
+[![Static Badge](https://img.shields.io/badge/ACL_2025-Long_(Main)-red?link=https%3A%2F%2Faclanthology.org%2F2025.acl-long.1012%2F)](https://aclanthology.org/2025.acl-long.1012/)
 ![GitHub License](https://img.shields.io/github/license/RenatoGeh/advtok)
 [![PyPI - Version](https://img.shields.io/pypi/v/advtok)](https://pypi.org/project/advtok/)
 
@@ -215,16 +216,27 @@ specific edge cases not covered by our code.
 ## How to cite
 
 This work implements `advtok`, described in full detail in the paper ["Adversarial
-Tokenization"](https://arxiv.org/abs/2503.02174).
+Tokenization"](https://aclanthology.org/2025.acl-long.1012/).
 
 ```
-@misc{geh2025adversarialtokenization,
-      title={Adversarial Tokenization},
-      author={Renato Lui Geh and Zilei Shao and Guy Van den Broeck},
-      year={2025},
-      eprint={2503.02174},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL},
-      url={https://arxiv.org/abs/2503.02174},
+@inproceedings{geh-etal-2025-adversarial,
+    title = "Adversarial Tokenization",
+    author = "Geh, Renato  and
+      Shao, Zilei  and
+      Van Den Broeck, Guy",
+    editor = "Che, Wanxiang  and
+      Nabende, Joyce  and
+      Shutova, Ekaterina  and
+      Pilehvar, Mohammad Taher",
+    booktitle = "Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    month = jul,
+    year = "2025",
+    address = "Vienna, Austria",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2025.acl-long.1012/",
+    doi = "10.18653/v1/2025.acl-long.1012",
+    pages = "20738--20765",
+    ISBN = "979-8-89176-251-0",
+    abstract = "Current LLM pipelines account for only one possible tokenization for a given string, ignoring exponentially many alternative tokenizations during training and inference. For example, the $\texttt{Llama3}$ standard tokenization of penguin is $\texttt{[p,enguin]}$, yet $\texttt{[peng,uin]}$ is another perfectly valid alternative. In this paper, we show that despite LLMs being trained solely on one tokenization, they still retain semantic understanding of other tokenizations, raising questions about their implications in LLM safety. Put succinctly, we answer the following question: can we adversarially tokenize an obviously malicious string to evade safety and alignment restrictions? We show that not only is adversarial tokenization an effective yet previously neglected axis of attack, but it is also competitive against existing state-of-the-art adversarial approaches without changing the text of the harmful request. We empirically validate this exploit across three state-of-the-art LLMs and adversarial datasets, revealing a previously unknown vulnerability in subword models."
 }
 ```
