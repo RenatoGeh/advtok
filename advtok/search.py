@@ -6,11 +6,12 @@ import advtok.jailbreak as jailbreak
 def greedy(model: transformers.AutoModelForCausalLM, tok: transformers.AutoTokenizer, S: str,
            k: int, sys_prompt: str, response: str, batch_size: int, X_0: list = None,
            max_neighbors: int = math.inf, frozen_prefix: str = [], frozen_suffix: str = [],
-           return_ll: bool = False, only_dist2: bool = True, early_stop: bool = True, **kwargs) -> list:
+           return_ll: bool = False, only_dist2: bool = True, early_stop: bool = True,
+           reuse_dd: mdd.MDD = None, **kwargs) -> list:
     """Greedy local search for argmax_X p(sys_prompt, X, response) with X_0 as initial tokenization
     and k the number of iterations."""
 
-    dd = mdd.build_mdd(tok, S, prefix_space=False)
+    dd = mdd.build_mdd(tok, S, prefix_space=False) if reuse_dd is None else reuse_dd
     iter_rng = tqdm.tqdm(range(k), desc="Iteration")
     X_c = tok.encode(S, add_special_tokens=False)
     if isinstance(frozen_prefix, str):
